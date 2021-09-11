@@ -8,7 +8,19 @@
     </tr>
   </thead>
   <tbody>
+    <%@books.each do |book|%>
+    <tr>
+      <td><%=book.title%></td>
+      <td><%=book.body%></td>
+      <td>
+        <%=link_to 'Show',book_path(book.id)%>
+        <%=link_to 'Edit',edit_book_path(book.id)%>
+        <%=link_to 'Destroy','/books/{#:id}'%>
+      </td>
+    </tr>
     
+    
+    <%end%>
   </tbody>
    
 </table>
@@ -17,12 +29,15 @@
 
 <%=form_with model:@book,local:true do |f|%>
   
-  <h4>Title</h4>
-  <%=f.text_field :title%>
-  
-  <h4>Body</h4>
-  <%=f.text_area :body%>
-  
-  <%=f.submit 'Create Book'%>
-
+  <div>
+    <h4>Title</h4>
+    <%=f.text_field :title%>
+  </div>
+  <div>
+    <h4>Body</h4>
+    <%=f.text_area :body%>  
+  </div>
+  <div>
+    <%=f.submit 'Create Book'%>  
+  </div>
 <%end%>
