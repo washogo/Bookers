@@ -7,16 +7,15 @@ class BooksController < ApplicationController
   def show
     @book=Book.find(params[:id])
   end
-
-  def new
-    @book=Book.new
-  end
   
   def create
     @book=Book.new(book_params)
     if @book.save
       flash.now[:notice]='Book was successfully created.'
-      render :show
+      render:show
+    else 
+      @books=Book.all
+      render:index
     end
   end
 
