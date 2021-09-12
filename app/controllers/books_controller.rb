@@ -13,9 +13,11 @@ class BooksController < ApplicationController
   end
   
   def create
-    book=Book.new(book_params)
-    book.save
-    redirect_to books_path
+    @book=Book.new(book_params)
+    if @book.save
+      flash.now[:notice]='Book was successfully created.'
+      render :show
+    end
   end
 
   def edit
